@@ -1521,12 +1521,11 @@ public class Util
 		}
 		return byte_3;
 	}
-
-
 	public static byte[] IPStringToByteArray(String ip)
 	{
 		byte[] array = new byte[4];
-		String[] array2 = ip.split("[.]");
+		String[] array2 = ip.split(".");
+		System.out.println(array2);
 		if (array2.length == 4)
 		{
 			for (int i = 0; i < 4; i++)
@@ -1534,17 +1533,14 @@ public class Util
 				array[i] = (byte) Integer.parseInt(array2[i]);
 			}
 		}
-
 		return array;
 	}
-
-
-
 	public static byte[] RandomKey()
 	{
 		byte[] key = new byte[16];
 		new Random().nextBytes(key);
 		return key;
+
 	}
 	public static byte[] RandomKey(int size)
 	{

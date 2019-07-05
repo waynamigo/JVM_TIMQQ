@@ -7,12 +7,11 @@ import com.Tick_Tock.PCTIM.Utils.*;
 
 public class ParseTlvFactory
 {
-
-
 	public static void parsetvl(TLV tlv, QQUser user)
 	{
 
 		int tlvtype = tlv.Tag;
+		System.out.println("tlv type = "+ tlvtype);
 		if (tlvtype == 274)
 		{
 			user.TXProtocol.BufSigClientAddr = tlv.Value;
@@ -139,13 +138,11 @@ public class ParseTlvFactory
 				user.TXProtocol.Buf16BytesGtKeyStHttp = httpfactory.readBytes(16);
 				user.TXProtocol.BufServiceTicketHttp = httpfactory.readBytesbylength();
 				//user.TXProtocol.BufGtKeyTgtPwd = httpfactory.readBytes(16);
-
 			}
 			else
 			{
 				System.out.println("未知版本类型");
 			}
-
 		}
 		else if (tlvtype == 264)
 		{
@@ -171,14 +168,12 @@ public class ParseTlvFactory
 			{
 				System.out.println("未知版本类型");
 			}
-
 		}
 		else if (tlvtype == 13)
 		{
 			byte[] WSubVer =  Util.subByte(tlv.Value, 1, 1);//wSubVer
 			if (WSubVer[0] == 1)
 			{
-
 			}
 			else
 			{
@@ -197,7 +192,6 @@ public class ParseTlvFactory
 			byte[] WSubVer = Util.subByte(tlv.Value, 1, 1);
 			if (WSubVer[0] == 1)
             {
-
             }
             else
             {
@@ -211,19 +205,16 @@ public class ParseTlvFactory
 			byte[] WSubVer = bytefactory.readBytes(1);
 			if (WSubVer[0] == 1)
             {
-
 				user.TXProtocol.SessionKey = bytefactory.readBytes(16);
 				byte[] dwUin = bytefactory.readBytes(4);
 				String dwClientIP = Util.GetIpStringFromBytes(bytefactory.readBytes(4));
 				user.TXProtocol.WClientPort = Util.GetShort(bytefactory.readBytes(2));
-
 				//....
             }
             else
             {
                 System.out.println("未知版本类型");
             }
-
 		}
 		else if (tlvtype == 270)
 		{
@@ -232,23 +223,15 @@ public class ParseTlvFactory
 			byte[] WSubVer = bytefactory.readBytes(1);
 			if (WSubVer[0] == 1)
             {
-
-
                 ByteFactory sigfactory = new ByteFactory(bytefactory.readBytesbylength());
 				byte[] dwUinLevel =sigfactory.readBytes(3);
                 byte[] dwUinLevelEx = sigfactory.readBytes(3);
 
-
                 byte[] buf24ByteSignature = sigfactory.readBytesbylength();
-
-
 
                 byte[] buf32ByteValueAddedSignature = sigfactory.readBytesbylength();
 
-
-
                 byte[] buf12ByteUserBitmap = sigfactory.readBytesbylength();
-
 				user.TXProtocol.ClientKey = buf32ByteValueAddedSignature;
 			}
             else
@@ -263,7 +246,6 @@ public class ParseTlvFactory
 			byte[] WSubVer = Util.subByte(tlv.Value, 1, 1);
 			if (WSubVer[0] == 1)
             {
-
 			}
             else
             {
@@ -275,7 +257,6 @@ public class ParseTlvFactory
 			byte[] WSubVer = Util.subByte(tlv.Value, 1, 1);
 			if (WSubVer[0] == 1)
             {
-
 			}
             else
             {
@@ -287,7 +268,6 @@ public class ParseTlvFactory
 			byte[] WSubVer = Util.subByte(tlv.Value, 1, 1);
 			if (WSubVer[0] == 1)
             {
-
 			}
             else
             {
@@ -298,11 +278,7 @@ public class ParseTlvFactory
 		else if (tlvtype == 256)
 		{
 			System.out.println(Util.byte2HexString(tlv.Value));
-
-
 		}
-
-
 		else if (tlvtype == 260)
 		{
 			ByteFactory factory = new ByteFactory(tlv.Value);

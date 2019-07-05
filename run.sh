@@ -20,7 +20,7 @@ done
 
 
 if ! which java >/dev/null;then
-    echo "java没装运行你妹啊";
+    echo "要java1.8.0";
     exit
 fi
 
